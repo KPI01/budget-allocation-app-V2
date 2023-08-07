@@ -3,6 +3,22 @@ import { createContext, useReducer } from "react"
 // 5. Reducer
 export const Reducer = (state, action) => {
     switch (action.type) {
+
+        case "SET_BUDGET":
+            action.type = "DONE";
+
+            state.budget = action.payload;
+            console.log("New budget is: ", state.budget)
+
+            return { ...state }
+
+        case "CHG_CRRNCY":
+            action.type = "DONE";
+
+            state.currency = action.payload;
+
+            return { ...state }
+
         default:
             return state;
     }
