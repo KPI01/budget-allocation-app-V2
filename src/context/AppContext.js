@@ -16,6 +16,7 @@ export const Reducer = (state, action) => {
             action.type = "DONE";
 
             state.currency = action.payload;
+            console.log("New currency is: ", state.currency.name, state.currency.symbol)
 
             return { ...state }
 
@@ -36,6 +37,14 @@ export const initState = {
         {id: 5, name: "IT", cost: 500},
     ]
 };
+
+    // Some currencies to select
+export const currencies = [
+    {name: "Dollar", symbol: "$"},
+    {name: "Euro", symbol: "€"},
+    {name: "Pound", symbol: "£"},
+    {name: "Rupee", symbol: "₹"}
+]
 
 // 2. Creation of context
 export const Context = createContext();
