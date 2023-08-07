@@ -17,14 +17,14 @@ export const Currency = () => {
     <div className="col">
       <div className="input-group mt-2">
         <label
-          className="input-group-text bg-success bg-opacity-25 fw-bold border border-success"
+          className="input-group-text bg-secondary bg-opacity-25 fw-bold border border-secondary"
           style={{"--bs-border-opacity": .25}}
           htmlFor="select-currency"
         >
           {currency.symbol}
         </label>
         <select
-          className="form-select bg-success bg-opacity-25 py-3 border border-success"
+          className="form-select bg-secondary bg-opacity-25 py-3 border border-secondary"
           style={{"--bs-border-opacity": .25}}
           id="select-currency"
           onChange={(e)=> submitCurrency(e.target.value)}
