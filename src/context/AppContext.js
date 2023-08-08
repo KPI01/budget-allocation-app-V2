@@ -3,13 +3,78 @@ import { createContext, useReducer } from "react";
 // 5. Reducer
 export const Reducer = (state, action) => {
   switch (action.type) {
+    case "ADD_EXP":
+      let totalSpent = state.expenses.reduce((total, item) => {
+        return (total += item.cost);
+      }, 0);
+      totalSpent += action.payload.cost;
+
+      action.type = "DONE";
+
+      if (state.budget >= totalSpent) {
+        totalSpent = 0;
+
+        state.expenses.map((item) => {
+          if (item.id === action.payload.id) {
+            item.cost += action.payload.cost;
+            console.log("Now ", item.name, " costs: ", item.cost);
+          }
+          return item;
+        });
+
+        return { ...state };
+      } else {
+        alert("The allocated budget cannot exceed the budget!");
+        return { ...state };
+      }
+
+    case "RED_EXP":
+      action.type = "DONE";
+
+      state.expenses.map((item) => {
+        if (item.id === action.payload.id) {
+          if (item.cost - action.payload.cost < 0) {
+            alert("Cannot reduce the allocated budget below 0");
+            item.cost = 0;
+          } else {
+            item.cost -= action.payload.cost;
+            console.log("Now ", item.name, " costs: ", item.cost);
+          }
+        }
+        return item;
+      });
+
+      return { ...state };
+
+    case "DEL_EXP":
+      action.type = "DONE";
+
+      state.expenses.map((item) => {
+        if (item.id === action.payload) {
+          item.cost = 0;
+          console.log(
+            "The allocated budget for",
+            item.name,
+            "has been deleted"
+          );
+        }
+        return item;
+      });
+
+      return { ...state };
+
     case "SET_BUDGET":
       action.type = "DONE";
 
-      state.budget = action.payload;
-      console.log("New budget is: ", state.budget);
+      if (action.payload <= 20000) {
+        state.budget = action.payload;
+        console.log("New budget is: ", state.budget);
 
-      return { ...state };
+        return { ...state };
+      } else {
+        alert("Budget cannot exceed " + state.currency.symbol + "20.000");
+        return { ...state };
+      }
 
     case "CHG_CRRNCY":
       action.type = "DONE";
@@ -17,8 +82,8 @@ export const Reducer = (state, action) => {
       state.currency = action.payload;
       console.log(
         "New currency is: ",
-        state.currency.name,
-        state.currency.symbol
+        state.currency.symbol,
+        state.currency.name
       );
 
       return { ...state };

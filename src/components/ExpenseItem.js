@@ -1,8 +1,9 @@
 import { useContext } from "react";
 import { Context } from "../context/AppContext";
+import { BsXCircleFill, BsPlusCircleFill, BsFillDashCircleFill } from "react-icons/bs"
 
 export const ExpenseItem = (props) => {
-  const { currency, expenses, dispatch } = useContext(Context);
+  const { currency, dispatch } = useContext(Context);
 
   const addExpense = (id, qty) => {
     let tx = {
@@ -11,7 +12,7 @@ export const ExpenseItem = (props) => {
     }
 
     dispatch({
-        type: "ADD",
+        type: "ADD_EXP",
         payload: tx
     })
   };
@@ -23,10 +24,17 @@ export const ExpenseItem = (props) => {
     }
 
     dispatch({
-        type: "RED",
+        type: "RED_EXP",
         payload: tx
     })
   };
+
+  const delExpense = (id) => {
+    dispatch({
+      type: "DEL_EXP",
+      payload: id
+    })
+  }
 
   return (
     <tr className="text-center">
@@ -37,10 +45,14 @@ export const ExpenseItem = (props) => {
         {props.cost}
       </td>
       <td>
-        <button onClick={addExpense(props.id, 10)}>+</button>
-        <button onClick={redExpense(props.id, 10)}>+</button>
+        <button className="btn" onClick={(e)=> addExpense(props.id, 10)}><BsPlusCircleFill color="green" size={"3ch"}/></button>
       </td>
-      <td>-</td>
+      <td>
+        <button className="btn" onClick={(e)=> redExpense(props.id, 10)}><BsFillDashCircleFill color="red" size={"3ch"} /></button>
+      </td>
+      <td>
+        <button className="btn" onClick={(e)=> delExpense(props.id, 10)}><BsXCircleFill size={"3ch"} /></button>
+      </td>
     </tr>
   );
 };

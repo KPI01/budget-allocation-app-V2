@@ -21,7 +21,7 @@ export const Currency = () => {
           style={{"--bs-border-opacity": .25}}
           htmlFor="select-currency"
         >
-          {currency.symbol}
+          Currency: 
         </label>
         <select
           className="form-select bg-secondary bg-opacity-25 py-3 border border-secondary"
@@ -34,8 +34,7 @@ export const Currency = () => {
               <option 
               value={JSON.stringify(item)}
               selected={item.name === currency.name ? true : false}>
-                {item.name}{" "}
-                {item.name === currency.name ? "" : "(" + item.symbol + ")"}
+                {item.symbol} {item.name}
               </option>
             );
           })}

@@ -13,7 +13,8 @@ export const ExpenseList = () => {
                         <th scope="col">#</th>
                         <th scope="col" className="text-start">Department</th>
                         <th scope="col">Allocated Budget</th>
-                        <th scope="col">Options</th>
+                        <th scope="col">Increase by 10</th>
+                        <th scope="col">Decrease by 10</th>
                         <th scope="col">Delete</th>
                     </tr>
                 </thead>

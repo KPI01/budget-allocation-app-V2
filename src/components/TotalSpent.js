@@ -10,7 +10,7 @@ export const TotalSpent = () => {
 
     return (
         <div className="col">
-            <div className="alert alert-danger h-100 d-flex align-items-center">
+            <div className="alert alert-warning h-100 d-flex align-items-center">
                 Total Spent: <strong className="ms-1">{currency.symbol}</strong>{totalSpent}
             </div>
         </div>

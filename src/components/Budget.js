@@ -26,6 +26,7 @@ export const Budget = () => {
         Budget: <strong className="ms-2">{currency.symbol}</strong>
         <input
           id="budget"
+          step={10}
           className="form-control ms-1 bg-white bg-opacity-25 border-primary border-1"
           style={{ "--bs-border-opacity": 0.5 }}
           type="number"
